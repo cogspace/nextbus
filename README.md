@@ -26,7 +26,7 @@ routes, err := nextbus.GetRoutes("glendale")
 ### Retrieve route information (terse).
 
 ```go
-routeConfig, err := nextbus.GetRouteConfig("glendale", "12")
+routeConfig, err := nextbus.GetRouteConfig("glendale", "12", false, true)
 ```
 
 ### Retrieve schedule information for a route.

@@ -76,8 +76,6 @@ func getPredictions(args args) (Predictions, error) {
 }
 
 // GetPredictionsMulti returns predicted arrival times for multiple stops.
-//
-//     nextbus.GetPredictionsMulti("glendale", []nextbus.Stop{ {"12", "gtc_d"}, {"12", "sanchev"} })
 func GetPredictionsMulti(agency string, stops []Stop) ([]Predictions, error) {
 	a := args{{"a", agency}}
 	for _, stop := range stops {
