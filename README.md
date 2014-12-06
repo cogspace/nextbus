@@ -3,26 +3,54 @@ NextBus API for Go
 
 This is an API library for reading data from the NextBus public JSON feed in Go.
 
-Example
--------
+```go
+import "github.com/cogspace/nextbus"
+```
+
+Things you can do
+-----------------
+
+### Get all the agencies NextBus knows about.
+
 
 ```go
-package main
-
-import (
-    "nextbus"
-    "fmt"
-    "log"
-)
-
 agencies, err := nextbus.GetAgencies()
-    if err != nil {
-        log.Fatal(err)
-    }
+```
 
-for _, agency := range agencies {
-    fmt.Println(agency.Tag)
-}
+### Get all the routes for a given agency.
+
+```go
+routes, err := nextbus.GetRoutes("glendale")
+```
+
+### Retrieve route information (terse).
+
+```go
+routeConfig, err := nextbus.GetRouteConfig("glendale", "12")
+```
+
+### Retrieve schedule information for a route.
+
+```go
+schedules, err := nextbus.GetSchedules("glendale", "12")
+```
+
+### Get bus predictions for one stop.
+
+```go
+predictions, err := nextbus.GetPredictions("glendale", "12", "gtc_d")
+```
+
+### Get predictions for multiple stops.
+
+```go
+predictions, err := nextbus.GetPredictionsMulti(
+    "glendale",
+    []nextbus.Stop{
+        { Route: "12", Stop: "gtc_d" },
+        { Route: "12", Stop: "sanchev" },
+    },
+)
 ```
 
 Further Reading
