@@ -94,6 +94,24 @@ func getBlockId(tr Tr) string {
 }
 ```
 
+In practice, naming theses types is not usually necessary in Go client code.
+
+```go
+ch := make(chan string)
+go func(ch chan string) {
+    schedules, err := nextbus.GetSchedules("glendale", "12")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    for _, schedule := range schedules {
+        for _, tr := range schedule.Tr {
+            ch <- tr.BlockId
+        }
+    }
+}(ch)
+...
+```
 
 Further Reading
 ---------------
