@@ -83,14 +83,31 @@ type Schedule struct {
 ```
 
 The only real problem with this is declaring a type for, say, `Tr` can be...
-cumbersome. To alleviate this problem, simply name whichever type you need to
-use.
+cumbersome.
 
 ```go
-type Tr struct{ Stop []struct{ Content, Tag, Epochtime string }; BlockId string }
+func getBlockId(tr struct{ Stop []struct{ Content, Tag, EpochTime string}; BlockId string }) string {
+    return tr.BlockId
+}
+
+func getStops(tr struct{ Stop []struct{ Content, Tag, EpochTime string }; BlockId string }) []struct{ Content, Tag, EpochTime string } {
+    // Now that's just silly...
+    return tr.Stop
+}
+```
+
+To alleviate this problem, simply name whichever types you need to use.
+
+```go
+type Stop struct{ Content, Tag, EpochTime string }
+type Tr struct{ Stop []Stop; BlockId string }
 
 func getBlockId(tr Tr) string {
     return tr.BlockId
+}
+
+func getStops(tr Tr) []Stop {
+    return tr.Stop
 }
 ```
 
