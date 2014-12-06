@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/cogspace/nextbus"
+	"fmt"
 	"log"
+
+	"github.com/cogspace/nextbus"
 )
 
 type tr struct {
@@ -11,6 +13,7 @@ type tr struct {
 }
 
 func f(tr tr) {
+	fmt.Printf("%#v\n", tr)
 }
 
 func main() {
