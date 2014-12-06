@@ -6,22 +6,24 @@ This is an API library for reading data from the NextBus public JSON feed in Go.
 Example
 -------
 
-    package main
+```go
+package main
 
-    import (
-        "nextbus"
-        "fmt"
-        "log"
-    )
+import (
+    "nextbus"
+    "fmt"
+    "log"
+)
 
-    agencies, err := nextbus.GetAgencies()
+agencies, err := nextbus.GetAgencies()
     if err != nil {
         log.Fatal(err)
     }
 
-    for _, agency := range agencies {
-        fmt.Println(agency.Tag)
-    }
+for _, agency := range agencies {
+    fmt.Println(agency.Tag)
+}
+```
 
 Further Reading
 ---------------
