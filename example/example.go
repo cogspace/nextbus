@@ -2,21 +2,23 @@ package main
 
 import (
 	"github.com/cogspace/nextbus"
-	"github.com/kr/pretty"
 	"log"
 )
 
+type tr struct {
+	Stop    []struct{ Content, Tag, EpochTime string }
+	BlockId string
+}
+
+func f(tr tr) {
+}
+
 func main() {
-	predictions, err := nextbus.GetPredictionsMulti(
-		"glendale",
-		[]nextbus.Stop{
-			{"12", "sanchev"},
-			{"12", "gtc_d"},
-		},
-	)
+	schedules, err := nextbus.GetSchedules("glendale", "12")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	pretty.Println(predictions)
+	tr := schedules[0].Tr[0]
+	f(tr)
 }
