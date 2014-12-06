@@ -100,7 +100,7 @@ To alleviate this problem, simply name whichever types you need to use.
 
 ```go
 type Stop struct{ Content, Tag, EpochTime string }
-type Tr struct{ Stop []Stop; BlockId string }
+type Tr struct{ Stop []struct{ Content, Tag, EpochTime string }; BlockId string }
 
 func getBlockId(tr Tr) string {
     return tr.BlockId
