@@ -46,7 +46,7 @@ func GetRoutes(agency string) ([]Route, error) {
 }
 
 // GetRouteConfig returns detailed information for the specified route (see GetRoutes).
-func GetRouteConfig(agency, route string, verbose, terse bool) (RouteConfig, error) {
+func GetRouteConfig(agency string, route string, verbose, terse bool) (RouteConfig, error) {
 	a := args{{"a", agency}, {"r", route}}
 	if verbose {
 		a.add("verbose", "")
@@ -60,12 +60,12 @@ func GetRouteConfig(agency, route string, verbose, terse bool) (RouteConfig, err
 }
 
 // GetPredictionsStopId returns predicted arrival times for a stop given by stopId.
-func GetPredictionsStopId(agency, stopId string) (Predictions, error) {
+func GetPredictionsStopId(agency string, stopId string) (Predictions, error) {
 	return getPredictions(args{{"a", agency}, {"stopId", stopId}})
 }
 
 // GetPredictions returns predicted arrival times for a stop given by route and stop tag.
-func GetPredictions(agency, route, stop string) (Predictions, error) {
+func GetPredictions(agency string, route string, stop string) (Predictions, error) {
 	return getPredictions(args{{"a", agency}, {"r", route}, {"s", stop}})
 }
 
@@ -87,7 +87,7 @@ func GetPredictionsMulti(agency string, stops []Stop) ([]Predictions, error) {
 }
 
 // GetSchedules returns schedule information for the given route (see GetRoutes).
-func GetSchedules(agency, route string) ([]Schedule, error) {
+func GetSchedules(agency string, route string) ([]Schedule, error) {
 	var wrapper struct{ Route []Schedule }
 	err := fetch(args{{"a", agency}, {"r", route}}.url("schedule"), &wrapper)
 	return wrapper.Route, err
